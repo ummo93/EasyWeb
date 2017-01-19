@@ -8,6 +8,8 @@ public class Main {
         App app = new App(new Router());
         // Задаём где у нас будут лежать статические файлы
         app.setStaticPath("./src/main/resources/");
+        // Задаём где у нас будут лежать публичные файлы
+        app.setPublicPath("./src/main/resources/public/");
         // Запускаем приложение на указанном порту
         app.listen(5000);
     }
@@ -39,8 +41,9 @@ public class Main {
                         App.sendFile(exc, "users.json"); //Здесь отправляем json файл
                         break;
                     default:
-                        App.send(exc, "404, not found", 404);
-                        break;    
+                        //Обязательно должна быть функция, открывающая доступ к файлам public
+                        App.enablePublic(exc);
+                        break;
                 }
             }
             // Обработка POST
@@ -62,7 +65,9 @@ public class Main {
                         break;    
                 }
                 
-            } else {
+            }
+
+            if(!exc.getRequestMethod().equals("POST") && !exc.getRequestMethod().equals("GET")) {
                 // Обработка остальных типов запросов
                 App.send(exc, "404, not found handlers for " + exc.getRequestMethod() + " request", 404);
             }

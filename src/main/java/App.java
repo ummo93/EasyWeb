@@ -18,6 +18,8 @@ public class App {
     public static Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
     /* Путь для статических файлов по умолчанию **/
     public static String pathToStatic = "./";
+    /* Путь к публичной директории**/
+    public static String pathToPublic = "./";
 
     public App(HttpHandler handler) throws IOException{
         this.handler = handler;
@@ -36,6 +38,18 @@ public class App {
             pathToStatic = pathToStaticFolder;
         } else {
             throw new IOException("End char in path of static files string must ending with a \"/\"");
+        }
+
+    }
+    public void setPublicPath(String pathToPublicFolder) throws IOException {
+        /** 
+         * Задаёт путь, где хранятся публичные файлы, доступ к которым разрешён с помощью GET. 
+         * @param pathToPublicFolder относительный путь к папке (заканчивается на /)
+         */
+        if(pathToPublicFolder.endsWith("/")) {
+            pathToPublic = pathToPublicFolder;
+        } else {
+            throw new IOException("End char in path of public folder string must ending with a \"/\"");
         }
 
     }
@@ -66,6 +80,7 @@ public class App {
         while((s=br.readLine()) != null) {
             data += s + "\r\n";
         }
+        br.close();
         outStreamObject.println(data);
         outStreamObject.close();
         req.close();
@@ -170,5 +185,38 @@ public class App {
         } catch(Exception e){
             return cookies;
         }
+    }
+    public static void enablePublic(HttpExchange exc) throws IOException {
+        /** 
+         * Проверяет публичную папку, и если имя файла в запросе совпадает с каким-нибудь файлом из
+         * публичной директории - отдаёт его клиенту
+         * @param req объект запроса
+         */
+        
+        String requestFile = exc.getRequestURI().getPath().replace("/", "");
+        String[] files = new File(pathToPublic).list();
+        for(String s : files) {
+            if(requestFile.equals(s)) {
+                File f = new File(pathToPublic + s);
+                if(f.isFile()) {
+                    exc.sendResponseHeaders(200, 0);
+                    PrintWriter out = new PrintWriter(exc.getResponseBody());
+                    BufferedReader br = new BufferedReader(new FileReader(f));
+                    String line;
+                    String data = "";
+                    while((line=br.readLine()) != null) {
+                        data += line + "\r\n";
+                    }
+                    br.close();
+                    out.println(data);
+                    out.close();
+                    exc.close();
+                } else {
+                    send(exc, "404, not found", 404);
+                }
+                break;
+            }
+        }
+        send(exc, "404, not found", 404);
     }
 }
