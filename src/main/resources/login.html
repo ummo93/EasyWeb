@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="materialize.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal open" style="z-index: 1003; display: block; opacity: 1; transform: scaleX(1); top: 10%;">
+    <div class="modal-content">
+      <h4>Log on website</h4>
+      <form class="col s12" method="POST" action="/login">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="login" name="login" type="text" class="validate">
+          <label for="login">Login</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="pass" name="pass" type="password">
+          <label for="pass">Password</label>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer" style="text-align: center">
+      <a href="#!" onclick="this.parentNode.previousElementSibling.children[1].submit()" class="modal-action modal-close waves-effect waves-green btn-flat" style="float:none">Log in</a>
+    </div>
+  </div>
+  <div class="modal-overlay" id="materialize-modal-overlay-1" style="z-index: 1002; display: block; opacity: 0.5;"></div>
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script src="materialize.min.js"></script>
+</body>
+</html>

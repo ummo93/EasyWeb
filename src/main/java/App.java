@@ -10,7 +10,34 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import db.Database;
 
+/**
+ * Класс приложения, который включает все необходимые для работы методы.
+ * Пример использования: 
+ *<pre>
+ * // Задаём обработчик
+ * App app = new App(new Router(), new Database(Environment.getEnv()));
+ * // Задаём где у нас будут лежать статические файлы
+ * app.setStaticPath("./src/main/resources/");
+ * // Задаём где у нас будут лежать публичные файлы
+ * app.setPublicPath("./src/main/resources/public/");
+ * // Запускаем приложение на указанном порту
+ * app.listen(5000);
+ *</pre>
+ * Требует определения статического класса, реализующего интерфейс HttpHandler, например:
+ * <pre>
+ * static class Router implements HttpHandler {
+ *       <p>@Override</p>
+ *       public void handle(HttpExchange exc) throws IOException {
+ *           // Обработка GET
+ *           if(exc.getRequestMethod().equals("GET")) {
+ *              // ... ваш код
+ *           }
+ *       }
+ *   }
+ * </pre>
+ */
 public class App {
     /* Здесь хранится класс-обработчик запросов **/
     public HttpHandler handler;
@@ -20,12 +47,20 @@ public class App {
     public static String pathToStatic = "./";
     /* Путь к публичной директории**/
     public static String pathToPublic = "./";
+    /* Указатель на БД **/
+    public static Database db;
 
-    public App(HttpHandler handler) throws IOException{
+    public App(HttpHandler handler, Database storage) throws IOException {
+        /** 
+         * Создаёт экземпляр приложения 
+         * @param handler экземпляр обработчика запросов для маршрутизации оных
+         * @param storage экземпляр коннектора к базе данных
+         */
         this.handler = handler;
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
+        db = storage;
     }
     public void setStaticPath(String pathToStaticFolder) throws IOException {
         /** 
@@ -170,9 +205,11 @@ public class App {
          * @return словарь в котором содержаться строковые пары (ключ-значение) с куками
          */
         Map<String, String> cookies = new HashMap<String, String>();
-        try {
+
+        if(req.getRequestHeaders().containsKey("Cookie")) {
             List<String> cookieList = req.getRequestHeaders().get("Cookie");
-            if(cookieList.size() < 0) {
+            if(cookieList.size() <= 0) {
+                cookies.put("null", "null");
                 return cookies;
             } else {
                 String cookieString = cookieList.get(0);
@@ -182,9 +219,11 @@ public class App {
                 }
                 return cookies;
             }
-        } catch(Exception e){
+        } else {
+            cookies.put("null", "null");
             return cookies;
         }
+        
     }
     public static void enablePublic(HttpExchange exc) throws IOException {
         /** 
@@ -212,11 +251,16 @@ public class App {
                     out.close();
                     exc.close();
                 } else {
-                    send(exc, "404, not found", 404);
+                    send(exc, "<body><h1>Not Found</h1><p>The requested URL <font color=\"blue\">/"+ requestFile +" </font>" + 
+        "was not found on this server.</p></body>", 404);
                 }
                 break;
             }
         }
-        send(exc, "404, not found", 404);
+        send(exc, "<body><h1>Not Found</h1><p>The requested URL <font color=\"blue\">/"+ requestFile +" </font>" + 
+        "was not found on this server.</p></body>", 404);
+    }
+    public static void redirect(HttpExchange exc, String URL) throws IOException {
+        send(exc, "<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL="+URL+"\"></body>", 200);
     }
 }

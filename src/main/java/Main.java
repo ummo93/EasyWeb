@@ -1,11 +1,13 @@
 import java.io.*;
+import java.sql.SQLException;
 import com.sun.net.httpserver.*;
 import java.util.*;
+import db.Database;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         // Задаём обработчик
-        App app = new App(new Router());
+        App app = new App(new Router(), new Database(Environment.getEnv()));
         // Задаём где у нас будут лежать статические файлы
         app.setStaticPath("./src/main/resources/");
         // Задаём где у нас будут лежать публичные файлы
@@ -24,21 +26,30 @@ public class Main {
                switch(exc.getRequestURI().toString()) {
                     // Отправка html
                     case "/":
-                        headers.set("Content-type", "text/html");
-                        App.setCookie(exc, "name", "test"); // Здесь запись куков
-                        Map templatingData = new HashMap();
-                        templatingData.put("user", "Dima");
-                        App.render(exc, "index.ftl", templatingData); //Здесь используем шаблонизатор
-                        break;
-                    case "/void":
                         Map<String, String> cookies = App.getCookies(exc); // Здесь забираем куки в словарь
-                        headers.set("Content-type", "text/html");
-                        App.sendFile(exc, "index2.html"); //Здесь отправляем статический html
+                        if(cookies.containsKey("login") && cookies.get("login").equals("true")) {
+                            headers.set("Content-type", "text/html");
+                            Map templatingData = new HashMap();
+                            templatingData.put("user", "Dima");
+                            App.render(exc, "index.ftl", templatingData); //Здесь используем шаблонизатор
+                        } else {
+                            App.redirect(exc, "/login");
+                        }
                         break;
-                    // Отправка json    
-                    case "/users": 
-                        headers.set("Content-type", "application/json");
-                        App.sendFile(exc, "users.json"); //Здесь отправляем json файл
+                    case "/login":
+                        headers.set("Content-type", "text/html");
+                        App.sendFile(exc, "login.html");
+                        break;    
+                    case "/void":
+                        try {
+                            // Пример работы с базой
+                            App.db.addRecord("title", "description", "imageURL", "shortDescription", "autor");
+                        } catch (SQLException se) {
+                            System.out.println(se);
+                        }
+                        
+                        headers.set("Content-type", "text/html");
+                        App.sendFile(exc, "login.html"); //Здесь отправляем статический html
                         break;
                     default:
                         //Обязательно должна быть функция, открывающая доступ к файлам public
@@ -50,7 +61,6 @@ public class Main {
             if(exc.getRequestMethod().equals("POST")) {
                 
                 switch(exc.getRequestURI().toString()) {
-                    // Отправка html
                     case "/":
                         headers.set("Content-type", "text/html");
                         Map body = App.parseUrlEncoded(exc);
@@ -60,8 +70,17 @@ public class Main {
                         headers.set("Content-type", "text/html");
                         App.send(exc, App.parseBodyToString(exc), 200); //Здесь парсим ответ как строку
                         break;
+                    case "/login":
+                        Map credentials = App.parseUrlEncoded(exc);
+                        if(credentials.get("pass").equals("12345") && credentials.get("login").equals("user")) {
+                            App.setCookie(exc, "login", "true"); // Здесь запись куков
+                            App.redirect(exc, "/");
+                        } else {
+                            App.send(exc, "<body><h1>Not Found</h1></body>", 404);
+                        }
+                        break;    
                     default:
-                        App.send(exc, "404, not found", 404);
+                        App.send(exc, "<body><h1>Not Found</h1></body>", 404);
                         break;    
                 }
                 

@@ -1,0 +1,1 @@
+mvn clean & mvn install & java -jar target/helloworld.jar
