@@ -14,7 +14,7 @@ public class Database {
     private String username;
     private String pass;
 
-    public Database (HashMap<String, String> credentials) throws Exception{
+    public Database (HashMap<String, String> credentials){
         if (credentials.size() >= 5) {
             this.host = credentials.get("host");
             this.port = credentials.get("port");
@@ -22,8 +22,6 @@ public class Database {
             this.username = credentials.get("username");
             this.pass = credentials.get("pass");
             System.out.println("Creating a MySQL environment successfull");
-        } else {
-            throw new Exception("You forgot to specify one of the parameters. You need define: host, port, schema, username, pass");
         }
     }
 

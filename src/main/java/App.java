@@ -47,20 +47,16 @@ public class App {
     public static String pathToStatic = "./";
     /* Путь к публичной директории**/
     public static String pathToPublic = "./";
-    /* Указатель на БД **/
-    public static Database db;
 
-    public App(HttpHandler handler, Database storage) throws IOException {
+    public App(HttpHandler handler) throws IOException {
         /** 
-         * Создаёт экземпляр приложения 
+         * Создаёт экземпляр приложения без БД 
          * @param handler экземпляр обработчика запросов для маршрутизации оных
-         * @param storage экземпляр коннектора к базе данных
          */
         this.handler = handler;
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
-        db = storage;
     }
     public void setStaticPath(String pathToStaticFolder) throws IOException {
         /** 

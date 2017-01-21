@@ -5,9 +5,12 @@ import java.util.*;
 import db.Database;
 
 public class Main {
+
+    public static Database db = new Database(Environment.getEnv());
+
     public static void main(String[] args) throws Exception {
         // Задаём обработчик
-        App app = new App(new Router(), new Database(Environment.getEnv()));
+        App app = new App(new Router());
         // Задаём где у нас будут лежать статические файлы
         app.setStaticPath("./src/main/resources/");
         // Задаём где у нас будут лежать публичные файлы
@@ -43,7 +46,7 @@ public class Main {
                     case "/void":
                         try {
                             // Пример работы с базой
-                            App.db.addRecord("title", "description", "imageURL", "shortDescription", "autor");
+                            db.addRecord("title", "description", "imageURL", "shortDescription", "autor");
                         } catch (SQLException se) {
                             System.out.println(se);
                         }
