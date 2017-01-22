@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import framework.App;
 
 public class Main {
@@ -13,17 +11,8 @@ public class Main {
         // Задаём где у нас будут лежать публичные файлы
         app.setPublicPath("./src/main/resources/public/");
 
-        app.get("/", (req, res) -> {
-            //Пример рендеринга шаблона;
-            Map<String, String> data = new HashMap<String, String>();
-            data.put("user", "GitHub user");
-            return res.render("index.ftl", data);
-        });
-
-        app.get("/json", (req, res) -> {
-            res.type("application/json");
-            return res.send("{\"user\": \"github_user\"}", 200);
-        });
+        // Регистрируем обработчик главной стрнаицы на метод mainPage()
+        app.get("/", (req, res) -> Controller.mainPage(req, res));
 
         // Запускаем приложение на указанном порту
         app.listen(System.getenv("PORT"));

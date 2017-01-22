@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Writer;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import com.sun.net.httpserver.HttpExchange;
@@ -19,11 +18,6 @@ import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.Headers;
 import java.net.URLDecoder;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-
-
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
