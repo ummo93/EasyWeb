@@ -1,5 +1,10 @@
+package framework;
 import java.io.*;
+import java.lang.invoke.LambdaMetafactory;
+import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Predicate;
+import javax.xml.ws.spi.http.HttpContext;
 import java.net.InetSocketAddress;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -10,14 +15,13 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import db.Database;
 
 /**
  * Класс приложения, который включает все необходимые для работы методы.
  * Пример использования: 
  *<pre>
  * // Задаём обработчик
- * App app = new App(new Router(), new Database(Environment.getEnv()));
+ * App app = new App();
  * // Задаём где у нас будут лежать статические файлы
  * app.setStaticPath("./src/main/resources/");
  * // Задаём где у нас будут лежать публичные файлы
@@ -25,22 +29,17 @@ import db.Database;
  * // Запускаем приложение на указанном порту
  * app.listen(5000);
  *</pre>
- * Требует определения статического класса, реализующего интерфейс HttpHandler, например:
+ * Требует определения обработчиков событий, например:
  * <pre>
- * static class Router implements HttpHandler {
- *       <p>@Override</p>
- *       public void handle(HttpExchange exc) throws IOException {
- *           // Обработка GET
- *           if(exc.getRequestMethod().equals("GET")) {
- *              // ... ваш код
- *           }
- *       }
- *   }
+ *  app.post("/post", out -> {
+ *     app.send(out, "ok", 200);
+ *     return true;
+ *  });
  * </pre>
  */
 public class App {
     /* Здесь хранится класс-обработчик запросов **/
-    public HttpHandler handler;
+    public static HttpHandler handler;
     /* Конфигурация для движка шаблонизатора **/
     public static Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
     /* Путь для статических файлов по умолчанию **/
@@ -48,12 +47,12 @@ public class App {
     /* Путь к публичной директории**/
     public static String pathToPublic = "./";
 
-    public App(HttpHandler handler) throws IOException {
+    public App() throws IOException {
         /** 
-         * Создаёт экземпляр приложения без БД 
+         * Создаёт экземпляр приложения
          * @param handler экземпляр обработчика запросов для маршрутизации оных
          */
-        this.handler = handler;
+        this.handler = new Manager();
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
@@ -72,6 +71,7 @@ public class App {
         }
 
     }
+
     public void setPublicPath(String pathToPublicFolder) throws IOException {
         /** 
          * Задаёт путь, где хранятся публичные файлы, доступ к которым разрешён с помощью GET. 
@@ -97,39 +97,56 @@ public class App {
         server.stop(0);
         System.out.println("Server stoped");
     }
-    public static void sendFile(HttpExchange req, String fileName) throws IOException {
+    public void sendFile(HttpExchange req, String fileName) {
         /** 
          * Отправляет клиенту файл. 
          * @param req объект запроса
          * @param fileName имя файла (не путь)
          */
-        req.sendResponseHeaders(200, 0);
-        PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
-        BufferedReader br = new BufferedReader(new FileReader(pathToStatic + fileName));
-        String s;
-        String data = "";
-        while((s=br.readLine()) != null) {
-            data += s + "\r\n";
+        try{
+            req.sendResponseHeaders(200, 0);
+            PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
+            BufferedReader br = new BufferedReader(new FileReader(pathToStatic + fileName));
+            String s;
+            String data = "";
+            while((s=br.readLine()) != null) {
+                data += s + "\r\n";
+            }
+            br.close();
+            outStreamObject.println(data);
+            outStreamObject.close();
+            req.close();
+
+            } catch (IOException ioe) {
+                System.out.println(ioe);
+                PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
+                outStreamObject.println(ioe.toString());
+                outStreamObject.close();
+                req.close();
         }
-        br.close();
-        outStreamObject.println(data);
-        outStreamObject.close();
-        req.close();
     }
-    public static void send(HttpExchange req, String data, int status) throws IOException {
+    public void send(HttpExchange req, String data, int status) {
         /** 
          * Отправляет клиенту строку данных. 
          * @param req объект запроса
          * @param data строка с данными (html, json и.т.д)
          * @param status статус ответа (200, 404 и.т.д)
          */
-        req.sendResponseHeaders(status, 0);
-        PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
-        outStreamObject.println(data);
-        outStreamObject.close();
-        req.close();
+        try {
+            req.sendResponseHeaders(status, 0);
+            PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
+            outStreamObject.println(data);
+            outStreamObject.close();
+            req.close();
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+            PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
+            outStreamObject.println(ioe.toString());
+            outStreamObject.close();
+            req.close();
+        }
     }
-    public static Map parseUrlEncoded(HttpExchange req) throws IOException {
+    public Map parseUrlEncoded(HttpExchange req) throws IOException {
         /** 
          * Парсит в словарь тело POST запроса в формате x-www-form-urlencoded из [] байтов. 
          * @param req объект запроса
@@ -170,31 +187,39 @@ public class App {
         }
         return join(data);
     }
-    public static void render(HttpExchange req, String pathToFile, Map renderData) throws IOException {
+    public void render(HttpExchange req, String pathToFile, Map renderData) {
         /** 
          * Запускает движок шаблонизатора freemarker и рендерит заданный шаблон, передавая в него словарь
          * @param req объект запроса
          * @param pathToFile имя файла шаблона
          * @param renderData словарь с данными для передачи в шаблон
          */
-        req.sendResponseHeaders(200, 0);
-        Writer out = new OutputStreamWriter(req.getResponseBody());
-        Template temp = cfg.getTemplate(pathToFile);
         try {
-            temp.process(renderData, out);
-        } catch (TemplateException te) {
-            System.out.println(te);
-        }
-        out.close();
-        req.close();
+            req.sendResponseHeaders(200, 0);
+            Writer out = new OutputStreamWriter(req.getResponseBody());
+            Template temp = cfg.getTemplate(pathToFile);
+            try {
+                temp.process(renderData, out);
+            } catch (TemplateException te) {
+                System.out.println(te);
+            }
+            out.close();
+            req.close();
+            } catch (IOException ioe) {
+                System.out.println(ioe);
+                PrintWriter outStreamObject = new PrintWriter(req.getResponseBody());
+                outStreamObject.println(ioe.toString());
+                outStreamObject.close();
+                req.close();
+            }
     }
-    public static void setCookie(HttpExchange req, String key, String value) {
+    public void setCookie(HttpExchange req, String key, String value) {
         /** 
          * Записывает куки в память браузера
          */
         req.getResponseHeaders().set("Set-Cookie", key + "=" + value);
     }
-    public static Map<String, String> getCookies(HttpExchange req) throws IOException {
+    public Map<String, String> getCookies(HttpExchange req) {
         /** 
          * Парсит куки в словарь, из которого удобно получить значения
          * @param req объект запроса
@@ -247,16 +272,66 @@ public class App {
                     out.close();
                     exc.close();
                 } else {
-                    send(exc, "<body><h1>Not Found</h1><p>The requested URL <font color=\"blue\">/"+ requestFile +" </font>" + 
-        "was not found on this server.</p></body>", 404);
+                    try {
+                        exc.sendResponseHeaders(404, 0);
+                        PrintWriter outStreamObject = new PrintWriter(exc.getResponseBody());
+                        outStreamObject.println("<body><h1>Not Found</h1><p>The requested URL <font color=\"blue\">/"+ requestFile +" </font>" + 
+        "was not found on this server.</p></body>");
+                        outStreamObject.close();
+                        exc.close();
+                    } catch (IOException ioe) {
+                        System.out.println(ioe);
+                        PrintWriter outStreamObject = new PrintWriter(exc.getResponseBody());
+                        outStreamObject.println(ioe.toString());
+                        outStreamObject.close();
+                        exc.close();
+                    }
                 }
                 break;
             }
         }
-        send(exc, "<body><h1>Not Found</h1><p>The requested URL <font color=\"blue\">/"+ requestFile +" </font>" + 
-        "was not found on this server.</p></body>", 404);
+        try {
+            exc.sendResponseHeaders(404, 0);
+            PrintWriter outStreamObject = new PrintWriter(exc.getResponseBody());
+            outStreamObject.println("<body><h1>Not Found</h1><p>The requested URL <font color=\"blue\">/"+ requestFile +" </font>" + 
+"was not found on this server.</p></body>");
+            outStreamObject.close();
+            exc.close();
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+            PrintWriter outStreamObject = new PrintWriter(exc.getResponseBody());
+            outStreamObject.println(ioe.toString());
+            outStreamObject.close();
+            exc.close();
+        }
     }
-    public static void redirect(HttpExchange exc, String URL) throws IOException {
-        send(exc, "<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL="+URL+"\"></body>", 200);
+    public void redirect(HttpExchange exc, String URL) {
+        this.send(exc, "<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL="+URL+"\"></body>", 200);
+    }
+
+    public void post(String path, Predicate<HttpExchange> lambdaExp) {
+        String[] options = {path, "POST"};
+        Manager.registrContext(options, lambdaExp);
+    }
+    public void get(String path, Predicate<HttpExchange> lambdaExp) {
+        String[] options = {path, "GET"};
+        Manager.registrContext(options, lambdaExp);
+    }
+
+    static class Manager implements HttpHandler {
+        public static Map<String[], Predicate<HttpExchange>> hierarchy = new HashMap<String[], Predicate<HttpExchange>>();
+        public static void registrContext(String[] path, Predicate<HttpExchange> p) {
+            hierarchy.put(path, p);
+        }
+        @Override
+        public void handle(HttpExchange exc) throws IOException {
+            System.out.println(exc.getRequestMethod() + ": " + exc.getRequestURI());
+            hierarchy.forEach((String[] k, Predicate<HttpExchange> v) -> {
+                if(k[0].equals(exc.getRequestURI().toString()) && k[1].equals(exc.getRequestMethod())){
+                    v.test(exc);
+                }
+            });
+            App.enablePublic(exc);
+        }
     }
 }

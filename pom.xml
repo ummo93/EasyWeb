@@ -4,14 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.appartika</groupId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.9</version>
   <artifactId>easy_web</artifactId>
   <dependencies>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.6</version>
-    </dependency>
     <dependency>
       <groupId>org.freemarker</groupId>
       <artifactId>freemarker</artifactId>
@@ -38,7 +33,7 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <finalName>helloworld</finalName>
+          <finalName>easy_web</finalName>
           <appendAssemblyId>false</appendAssemblyId>
           <archive>
             <manifest>

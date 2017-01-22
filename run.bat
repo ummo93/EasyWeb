@@ -1,1 +1,1 @@
-java -jar target/helloworld.jar
+java -jar target/easy_web.jar

@@ -1,1 +1,1 @@
-mvn clean & mvn install & java -jar target/helloworld.jar
+mvn clean & mvn install & java -jar target/easy_web.jar
