@@ -92,18 +92,29 @@ public class App {
 
     }
 
-    public void listen(int port) throws IOException {
+    public void listen(Integer port) throws NumberFormatException, IOException {
         /** 
          * Запускает сервер на определённом порту. 
          * @param port порт на котором будет запущен процесс
          */
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 10);
-        server.createContext("/", handler);
-        server.start();
-        System.out.println("Server started on port " + port + "\nPress any key to stop...");
-        System.in.read();
-        server.stop(0);
-        System.out.println("Server stoped");
+        if(port != null) {
+            HttpServer server = HttpServer.create(new InetSocketAddress(port), 10);
+            server.createContext("/", handler);
+            server.start();
+            System.out.println("Server started on port " + port + "\nPress any key to stop...");
+            System.in.read();
+            server.stop(0);
+            System.out.println("Server stoped");
+        } else {
+            HttpServer server = HttpServer.create(new InetSocketAddress(5000), 10);
+            server.createContext("/", handler);
+            server.start();
+            System.out.println("Server started on port " + 5000 + "\nPress any key to stop...");
+            System.in.read();
+            server.stop(0);
+            System.out.println("Server stoped");
+        }
+
     }
 
     public static String join(String[] array) {

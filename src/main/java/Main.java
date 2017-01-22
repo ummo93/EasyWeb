@@ -25,6 +25,7 @@ public class Main {
         });
 
         // Запускаем приложение на указанном порту
-        app.listen(5000);
+        if (System.getenv("PORT") != null) app.listen(Integer.valueOf(System.getenv("PORT")));
+        else app.listen(5000);
     }
 }
