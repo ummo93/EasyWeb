@@ -195,10 +195,8 @@ public class App {
             SHA.update(param.getBytes("UTF-8"), 0, param.length());
             byte[] sha1hash = SHA.digest();
             return bytesToHexStr(sha1hash);
-        } catch (Exception e) {
-            System.out.println(e);
-            return "null";
-        }
+        } catch (Exception e) {}
+        return "null";
     }
     public static String MD5(String md5) {
         try {
@@ -383,6 +381,10 @@ public class App {
         }
         public String path() {
             return this.exchange.getRequestURI().toString();
+        }
+        public void cookie(String key, String value, int expires) {
+        /** Записывает куки в память браузера с временем истечения */
+            this.exchange.getResponseHeaders().add("Set-Cookie", key + "=" + value + "; " + "Max-Age=" + expires);
         }
         public void cookie(String key, String value) {
         /** Записывает куки в память браузера */
