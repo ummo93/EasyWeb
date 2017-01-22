@@ -10,7 +10,7 @@ public class Main {
         app.setStaticPath("./src/main/resources/");
         // Задаём где у нас будут лежать публичные файлы
         app.setPublicPath("./src/main/resources/public/");
-
+        
         // Регистрируем обработчик главной стрнаицы на метод mainPage()
         app.get("/", (req, res) -> Controller.mainPage(req, res));
 
