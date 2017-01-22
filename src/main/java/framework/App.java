@@ -12,6 +12,9 @@ import java.io.Writer;
 import java.io.PrintWriter;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
+import java.net.URI;
+
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -364,11 +367,14 @@ public class App {
         */
         public HttpExchange exchange;
         public String body;
-        
+        public URI uri;
+        public String query;
         public Request(HttpExchange exc) {
             this.exchange = exc;
             try {
                 this.body = this.body();
+                this.uri = this.path();
+                this.query = this.uri.getQuery();
             } catch (IOException e) {
                 this.body = e.toString();
             }
@@ -379,8 +385,8 @@ public class App {
         public String method() {
             return this.exchange.getRequestMethod();
         }
-        public String path() {
-            return this.exchange.getRequestURI().toString();
+        private URI path() {
+            return this.exchange.getRequestURI();
         }
         public void removeCookie(String key) {
         /** Записывает куки в память браузера с временем истечения */
@@ -478,7 +484,7 @@ public class App {
         public void handle(HttpExchange exc) throws IOException {
             System.out.println(exc.getRequestMethod() + ": " + exc.getRequestURI());
             hierarchy.forEach((String[] k, BiPredicate<Request, Response> v) -> {
-                if (k[0].equals(exc.getRequestURI().toString()) && k[1].equals(exc.getRequestMethod())) {
+                if (k[0].equals(exc.getRequestURI().getPath()) && k[1].equals(exc.getRequestMethod())) {
                     v.test(new Request(exc), new Response(exc));
                 }
             });
