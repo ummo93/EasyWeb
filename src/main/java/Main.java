@@ -20,10 +20,6 @@ public class Main {
             return res.render("index.ftl", data);
         });
 
-        app.post("/post", (req, res) -> {
-            return res.send("ok", 200);
-        });
-
         // Запускаем приложение на указанном порту
         app.listen(System.getenv("PORT"));
     }

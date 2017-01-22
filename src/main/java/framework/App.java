@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Writer;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import com.sun.net.httpserver.HttpExchange;
@@ -17,6 +18,12 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.Headers;
 import java.net.URLDecoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+
+
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -182,7 +189,37 @@ public class App {
             exc.close();
         }
     }
+    public static String sha1(String param) {
+        try {
+            MessageDigest SHA = MessageDigest.getInstance("SHA-1");
+            SHA.reset();
+            SHA.update(param.getBytes("UTF-8"), 0, param.length());
+            byte[] sha1hash = SHA.digest();
+            return bytesToHexStr(sha1hash);
+        } catch (Exception e) {
+            System.out.println(e);
+            return "null";
+        }
+    }
 
+    private static String bytesToHexStr(byte[] raw) {
+        /**
+         * Преобразование байтового массива в hex-строку
+         * @param raw
+         * @return String
+         */
+        char[] kDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        int length = raw.length;
+        char[] hex = new char[length * 2];
+        for (int i = 0; i < length; i++) {
+            int value = (raw[i] + 256) % 256;
+            int highIndex = value >> 4;
+            int lowIndex = value & 0x0f;
+            hex[i * 2 + 0] = kDigits[highIndex];
+            hex[i * 2 + 1] = kDigits[lowIndex];
+        }
+        return new String(hex);
+    }
     public void post(String path, BiPredicate<Request, Response> lambdaExp) {
         /** 
          * Регистрирует обрботчик POST запроса
