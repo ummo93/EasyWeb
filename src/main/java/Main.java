@@ -20,6 +20,11 @@ public class Main {
             return res.render("index.ftl", data);
         });
 
+        app.get("/json", (req, res) -> {
+            res.type("application/json");
+            return res.send("{\"user\": \"github_user\"}", 200);
+        });
+
         // Запускаем приложение на указанном порту
         app.listen(System.getenv("PORT"));
     }

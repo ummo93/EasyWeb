@@ -256,6 +256,9 @@ public class App {
         public Response(HttpExchange exc) {
             this.exchange = exc;
         }
+        public void type(String type) {
+            this.exchange.getResponseHeaders().set("Content-type", type);
+        }
         public boolean send(String data, int status) {
             /** 
              * Отправляет клиенту строку данных. 
