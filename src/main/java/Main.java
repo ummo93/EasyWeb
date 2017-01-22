@@ -11,16 +11,15 @@ public class Main {
         // Задаём где у нас будут лежать публичные файлы
         app.setPublicPath("./src/main/resources/public/");
 
-        app.get("/", out -> {
-            out.getResponseHeaders().set("Content-type", "text/html");
-            Map templatingData = new HashMap();
+        app.get("/", (req, res) -> {
+            Map<String, String> templatingData = new HashMap<String, String>();
             templatingData.put("user", "Dima");
-            app.render(out, "index.ftl", templatingData); //Рендерим шаблон
+            res.render("index.ftl", templatingData); //Рендерим шаблон
             return true;
         });
 
-        app.post("/post", out -> {
-            app.send(out, "ok", 200);
+        app.post("/post", (req, res) -> {
+            res.send("ok", 200);
             return true;
         });
 
