@@ -6,6 +6,7 @@ EasyWeb is a easiest web framework with a minimal number of dependencies inspire
 #### Requirements and dependencies
   - Maven
   - Freemarker (http://freemarker.org/)
+  
 #### Getting started
 ```sh
 $ mvn install
