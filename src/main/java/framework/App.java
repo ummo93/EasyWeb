@@ -354,8 +354,15 @@ public class App {
         * </pre>
         */
         public HttpExchange exchange;
+        public String body;
+        
         public Request(HttpExchange exc) {
             this.exchange = exc;
+            try {
+                this.body = this.body();
+            } catch (IOException e) {
+                this.body = e.toString();
+            }
         }
         public Headers headers() {
             return this.exchange.getRequestHeaders();
@@ -366,13 +373,30 @@ public class App {
         public String path() {
             return this.exchange.getRequestURI().toString();
         }
-        public void cookies(String key, String value) {
-        /** 
-         * Записывает куки в память браузера
-         */
-            this.exchange.getResponseHeaders().set("Set-Cookie", key + "=" + value);
+        public void cookie(String key, String value) {
+        /** Записывает куки в память браузера */
+            this.exchange.getResponseHeaders().add("Set-Cookie", key + "=" + value);
         }
-
+        public String cookie(String key) {
+        /** Полуает доступ к куки по имени */
+            if (this.exchange.getRequestHeaders().containsKey("Cookie")) {
+                 List<String> cookies = this.exchange.getRequestHeaders().get("Cookie");
+                 if(cookies.size() != 0) {
+                    String cookieString = cookies.get(0);
+                    String[] cookiesCouples = cookieString.split(";");
+                    for (String s : cookiesCouples) {
+                        if(s.split("=")[0].replaceAll(" ", "").equals(key)) {
+                            return s.split("=")[1].replaceAll(" ", "");
+                        }
+                    }
+                    return "null";
+                 } else {
+                     return "null";
+                 }
+            } else {
+                return "null";
+            }
+        }
         public Map<String, String> cookies() {
             /** 
              * Парсит куки в словарь, из которого удобно получить значения
@@ -404,21 +428,14 @@ public class App {
              * Парсит в словарь тело POST запроса в формате x-www-form-urlencoded из [] байтов. 
              * @return словарь из которого можно получить передаваемые поля
              */
-            int lengthOfBody = this.exchange.getRequestBody().available();
-            String[] data = new String[lengthOfBody];
-            for (int i = 0; i < lengthOfBody; i++) {
-                data[i] = ((char) this.exchange.getRequestBody().read()) + "";
-            }
-            String dataString = join(data);
-            //Парсим в словарь
             Map<String, String> map = new HashMap<String, String>();
-            String[] couples = dataString.split("&");
-            for (String s : couples) {
-                map.put(URLDecoder.decode(s.split("=")[0], "UTF-8"), URLDecoder.decode(s.split("=")[1], "UTF-8"));
+            String[] bodies = this.body.split("&");
+            for(int i = 0; i < bodies.length; i++) {
+                map.put(bodies[i].split("=")[0], bodies[i].split("=")[1]);
             }
             return map;
         }
-        public String body() throws IOException {
+        private String body() throws IOException {
             /** 
              * Парсит в строку тело POST запроса в любом формате из [] байтов. 
              * @return строка из которой можно извлечь передаваемые поля
