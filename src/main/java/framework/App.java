@@ -260,7 +260,7 @@ public class App {
             this.exchange = exc;
         }
         public void type(String type) {
-            this.exchange.getResponseHeaders().set("Content-type", type);
+            this.exchange.getResponseHeaders().add("Content-type", type);
         }
         public boolean send(String data, int status) {
             /** 
@@ -381,6 +381,10 @@ public class App {
         }
         public String path() {
             return this.exchange.getRequestURI().toString();
+        }
+        public void removeCookie(String key) {
+        /** Записывает куки в память браузера с временем истечения */
+            this.exchange.getResponseHeaders().add("Set-Cookie", key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
         }
         public void cookie(String key, String value, int expires) {
         /** Записывает куки в память браузера с временем истечения */
