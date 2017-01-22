@@ -6,7 +6,7 @@ import framework.App;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        // Задаём обработчик
+        // Создаём экземпляр приложения
         App app = new App();
         // Задаём где у нас будут лежать статические файлы
         app.setStaticPath("./src/main/resources/");
