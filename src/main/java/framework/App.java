@@ -101,18 +101,12 @@ public class App {
             HttpServer server = HttpServer.create(new InetSocketAddress(port), 10);
             server.createContext("/", handler);
             server.start();
-            System.out.println("Server started on port " + port + "\nPress any key to stop...");
-            System.in.read();
-            server.stop(0);
-            System.out.println("Server stoped");
+            System.out.println("Server started on port " + port + "\n");
         } else {
             HttpServer server = HttpServer.create(new InetSocketAddress(5000), 10);
             server.createContext("/", handler);
             server.start();
-            System.out.println("Server started on port " + 5000 + "\nPress any key to stop...");
-            System.in.read();
-            server.stop(0);
-            System.out.println("Server stoped");
+            System.out.println("Server started on port " + 5000 + "\n");
         }
 
     }
