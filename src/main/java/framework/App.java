@@ -190,6 +190,11 @@ public class App {
         }
     }
     public static String sha1(String param) {
+        /**
+         * Шифрование строки в sha1 хеш
+         * @param param строка, которую будем шифровать
+         * @return sha1 хеш
+         */
         try {
             MessageDigest SHA = MessageDigest.getInstance("SHA-1");
             SHA.reset();
@@ -203,11 +208,7 @@ public class App {
     }
 
     private static String bytesToHexStr(byte[] raw) {
-        /**
-         * Преобразование байтового массива в hex-строку
-         * @param raw
-         * @return String
-         */
+        /** Преобразование байтового массива в hex-строку */
         char[] kDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         int length = raw.length;
         char[] hex = new char[length * 2];
