@@ -1,9 +1,11 @@
-import java.util.*;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import framework.App;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         // Задаём обработчик
         App app = new App();
         // Задаём где у нас будут лежать статические файлы
@@ -12,15 +14,14 @@ public class Main {
         app.setPublicPath("./src/main/resources/public/");
 
         app.get("/", (req, res) -> {
+            //Пример рендеринга шаблона;
             Map<String, String> templatingData = new HashMap<String, String>();
-            templatingData.put("user", "Dima");
-            res.render("index.ftl", templatingData); //Рендерим шаблон
-            return true;
+            templatingData.put("user", "GitHub user");
+            return res.render("index.ftl", templatingData);
         });
 
         app.post("/post", (req, res) -> {
-            res.send("ok", 200);
-            return true;
+            return res.send("ok", 200);
         });
 
         // Запускаем приложение на указанном порту

@@ -205,7 +205,7 @@ public class App {
         public Response(HttpExchange exc) {
             this.exchange = exc;
         }
-        public void send(String data, int status) {
+        public boolean send(String data, int status) {
             /** 
              * Отправляет клиенту строку данных. 
              * @param data строка с данными (html, json и.т.д)
@@ -217,15 +217,17 @@ public class App {
                 outStreamObject.println(data);
                 outStreamObject.close();
                 this.exchange.close();
+                return true;
             } catch (IOException ioe) {
                 System.out.println(ioe);
                 PrintWriter outStreamObject = new PrintWriter(this.exchange.getResponseBody());
                 outStreamObject.println(ioe.toString());
                 outStreamObject.close();
                 this.exchange.close();
+                return false;
             }
         }
-        public void render(String pathToFile, Map renderData) {
+        public boolean render(String pathToFile, Map renderData) {
             /** 
              * Запускает движок шаблонизатора freemarker и рендерит заданный шаблон, передавая в него словарь
              * @param pathToFile имя файла шаблона
@@ -242,15 +244,17 @@ public class App {
                 }
                 out.close();
                 this.exchange.close();
+                return true;
             } catch (IOException ioe) {
                 System.out.println(ioe);
                 PrintWriter outStreamObject = new PrintWriter(this.exchange.getResponseBody());
                 outStreamObject.println(ioe.toString());
                 outStreamObject.close();
                 this.exchange.close();
+                return false;
             }
         }
-        public void sendFile(String fileName) { // V
+        public boolean sendFile(String fileName) { // V
         /** 
          * Отправляет клиенту файл. 
          * @param fileName имя файла (не путь)
@@ -268,6 +272,7 @@ public class App {
                 outStreamObject.println(data);
                 outStreamObject.close();
                 this.exchange.close();
+                return true;
 
             } catch (IOException ioe) {
                 System.out.println(ioe);
@@ -275,14 +280,16 @@ public class App {
                 outStreamObject.println(ioe.toString());
                 outStreamObject.close();
                 this.exchange.close();
+                return false;
             }
         }
-        public void redirect(String URL) {
+        public boolean redirect(String URL) {
         /** 
          * Перенаправляет поток к другому обработчику. 
          * @param URL контекст другого обработчика
          */
             this.send("<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=" + URL + "\"></body>", 200);
+            return true;
         }
     }
 
