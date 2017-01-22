@@ -15,9 +15,9 @@ public class Main {
 
         app.get("/", (req, res) -> {
             //Пример рендеринга шаблона;
-            Map<String, String> templatingData = new HashMap<String, String>();
-            templatingData.put("user", "GitHub user");
-            return res.render("index.ftl", templatingData);
+            Map<String, String> data = new HashMap<String, String>();
+            data.put("user", "GitHub user");
+            return res.render("index.ftl", data);
         });
 
         app.post("/post", (req, res) -> {
