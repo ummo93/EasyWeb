@@ -38,7 +38,7 @@ import freemarker.template.TemplateExceptionHandler;
  * Требует определения обработчиков событий, например:
  * <pre>
  *  app.post("/post", (req, res) -> {
- *     res.send(out, "ok", 200);
+ *     res.send("ok", 200);
  *     return true;
  *  });
  * </pre>
@@ -209,7 +209,7 @@ public class App {
      * Пример использования: 
     * <pre>
     *  app.post("/post", (req, <b>res</b>) -> {
-    *     <b>res</b>.send(out, "ok", 200);
+    *     <b>res</b>.send("ok", 200);
     *     return true;
     *  });
     * </pre>
