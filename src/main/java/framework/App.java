@@ -184,6 +184,10 @@ public class App {
             exc.close();
         }
     }
+/** ----------------------- Шифрование и безопасность ----------------------------- */
+    public static String encrypt(String str, String salt) {
+        return App.sha1(App.MD5(str) + salt);
+    }
     public static String sha1(String param) {
         /**
          * Шифрование строки в sha1 хеш
@@ -225,6 +229,7 @@ public class App {
         }
         return new String(hex);
     }
+    /** ----------------------------------------------------------------------------------- */
     public void post(String path, BiPredicate<Request, Response> lambdaExp) {
         /** 
          * Регистрирует обрботчик POST запроса
