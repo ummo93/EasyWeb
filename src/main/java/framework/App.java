@@ -346,8 +346,13 @@ public class App {
          * Перенаправляет поток к другому обработчику. 
          * @param URL контекст другого обработчика
          */
-            return this.send("<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=" + URL + "\"></body>", 200);
-
+            this.exchange.getResponseHeaders().add("Location", URL);
+            try {
+                this.exchange.sendResponseHeaders(307, 0);
+            } catch (IOException e) {
+                return this.send("<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=" + URL + "\"></body>", 200);
+            }
+            return true;
         }
     }
 
