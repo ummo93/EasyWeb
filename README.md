@@ -4,6 +4,7 @@
 
 EasyWeb is a easiest web framework with a minimal number of dependencies inspired ExpressJS. Founded on com.sun.net.httpserver package.
 #### Requirements and dependencies
+  - Java 8
   - Maven
   - Freemarker (http://freemarker.org/)
   
