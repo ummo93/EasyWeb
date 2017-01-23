@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.SortedMap;
 
 public class Storage {
 
     public static List<User> container = new ArrayList<User>();
-    {
-        // Default user
-        container.add(new User("admin", "admin", 0));
+    
+    public static void config() {
+        User u = new User("admin", "admin", 0);
+        container.add(u);
+        System.out.println("Storage default options has been established");
     }
     public static User getUser(String login, String pass) {
         for(User user : container) {
@@ -21,7 +23,6 @@ public class Storage {
         }
         return null;
     }
-
     public static boolean hasUser(User u) {
         for(User user : container) {
             if(u.login.equals(user.login)) {
@@ -38,7 +39,6 @@ public class Storage {
         }
         return false;
     }
-
     public static boolean push(User u) {
 
         if(container.size() == 0) {

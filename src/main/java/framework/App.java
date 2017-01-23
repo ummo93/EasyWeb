@@ -115,10 +115,10 @@ public class App {
             server.start();
             System.out.println("Server started on port " + Integer.valueOf(port) + "\n");
         } else {
-            HttpServer server = HttpServer.create(new InetSocketAddress(5000), 10);
+            HttpServer server = HttpServer.create(new InetSocketAddress(8080), 10);
             server.createContext("/", handler);
             server.start();
-            System.out.println("Server started on port " + 5000 + "\n");
+            System.out.println("Server started on port " + 8080 + "\n");
         }
     }
     public static String join(String[] array) {
@@ -346,8 +346,8 @@ public class App {
          * Перенаправляет поток к другому обработчику. 
          * @param URL контекст другого обработчика
          */
-            this.send("<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=" + URL + "\"></body>", 200);
-            return true;
+            return this.send("<body><META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=" + URL + "\"></body>", 200);
+
         }
     }
 

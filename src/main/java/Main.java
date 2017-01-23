@@ -1,5 +1,6 @@
 import java.io.IOException;
 import framework.App;
+import framework.Storage;
 
 public class Main {
 
@@ -19,7 +20,13 @@ public class Main {
 
         // Регистрируем обработчик формы входа
         app.get("/logon", (req, res) -> Controller.logIn(req, res));
-        
+
+        // Выход
+        app.get("/logout", (req, res) -> Controller.logOut(req, res));
+
+        // Создание дефолтной конфигурации хранилища
+        Storage.config();
+
         // Запускаем приложение на указанном порту
         app.listen(System.getenv("PORT"));
     }
