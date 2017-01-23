@@ -1,9 +1,10 @@
-# EasyWeb
+# EasyWeb (modern wrapper for com.sun.net.httpserver)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ummo93/EasyWeb)
 
-EasyWeb is a easiest web framework with a minimal number of dependencies inspired ExpressJS.
+EasyWeb is a easiest web framework with a minimal number of dependencies inspired ExpressJS. Founded on com.sun.net.httpserver package.
 #### Requirements and dependencies
+  - Java 8
   - Maven
   - Freemarker (http://freemarker.org/)
   
