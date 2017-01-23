@@ -16,13 +16,13 @@ public class Main {
         app.get("/", (req, res) -> Controller.mainPage(req, res));
 
         // Регистрируем обработчик страницы длогина
-        app.get("/login", (req, res) -> Controller.loginPage(req, res));
+        app.get("/login", (req, res) -> Authentication.loginPage(req, res));
 
         // Регистрируем обработчик формы входа
-        app.get("/logon", (req, res) -> Controller.logIn(req, res));
+        app.get("/logon", (req, res) -> Authentication.logIn(req, res));
 
         // Выход
-        app.get("/logout", (req, res) -> Controller.logOut(req, res));
+        app.get("/logout", (req, res) -> Authentication.logOut(req, res));
 
         // Создание дефолтной конфигурации хранилища
         Storage.config();

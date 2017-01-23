@@ -13,7 +13,15 @@ public class User {
 
     public User(String login, String pass, int role) {
         this.login = login;
-        this.pass = Authentication.encrypt(pass);
+        this.pass = App.encrypt(pass, "userModelSalt");
         this.role = role;
+    }
+    public int getRole() {
+        /** Getter for freemarker */
+        return this.role;
+    }
+    public String getLogin() {
+        /** Getter for freemarker */
+        return this.login;
     }
 }
