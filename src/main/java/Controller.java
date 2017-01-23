@@ -1,9 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
-
 import framework.Storage;
-
-
 import framework.User;
 import framework.App.Request;
 import framework.App.Response;
