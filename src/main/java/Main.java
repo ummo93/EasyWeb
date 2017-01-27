@@ -12,7 +12,13 @@ public class Main {
         app.setPublicPath("./src/main/resources/public/");
 
         // Регистрируем обработчик главной стрнаицы на метод mainPage()
-        app.get("/", (req, res) -> Controller.mainPage(req, res));
+        app.get("/", Controller::mainPage);
+
+        app.get("/rest", (req, res) -> {
+            Greetings hello = new Greetings("hello!");
+            res.type("application/json");
+            return res.send(hello.toJson(), 200);
+        });
 
         // Запускаем приложение на указанном порту
         app.listen(System.getenv("PORT"));
