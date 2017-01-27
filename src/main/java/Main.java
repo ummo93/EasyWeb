@@ -13,16 +13,16 @@ public class Main {
         app.setPublicPath("./src/main/resources/public/");
 
         // Регистрируем обработчик главной стрнаицы на метод mainPage()
-        app.get("/", (req, res) -> Controller.mainPage(req, res));
+        app.get("/", Controller::mainPage);
 
         // Регистрируем обработчик страницы длогина
-        app.get("/login", (req, res) -> Authentication.loginPage(req, res));
+        app.get("/login", Authentication::loginPage);
 
         // Регистрируем обработчик формы входа
-        app.get("/logon", (req, res) -> Authentication.logIn(req, res));
+        app.get("/logon", Authentication::logIn);
 
         // Выход
-        app.get("/logout", (req, res) -> Authentication.logOut(req, res));
+        app.get("/logout", Authentication::logOut);
 
         // Создание дефолтной конфигурации хранилища
         Storage.config();
