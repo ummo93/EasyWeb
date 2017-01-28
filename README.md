@@ -22,7 +22,6 @@ On the title page of the library the should be an instruction containing the rep
     </repository>
   </repositories>
 ```
-
 And a dependency name:
 ```xml
   <dependencies>
