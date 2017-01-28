@@ -34,11 +34,6 @@ And a dependency name:
   </dependencies>
 ```
 
-#### Getting started
-```sh
-$ mvn install
-$ java -jar target/easy_web.jar
-```
 #### Minimal configuration
 ```java
 import java.io.IOException;
