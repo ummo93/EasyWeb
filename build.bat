@@ -1,1 +1,0 @@
-mvn clean & mvn install & java -jar target/easyweb.jar

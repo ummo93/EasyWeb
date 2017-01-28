@@ -8,36 +8,14 @@ EasyWeb is easiest web framework with a minimal number of dependencies inspired 
   - Maven
   - Freemarker (http://freemarker.org/)
   
-#### Install from maven
-In your pom.xml you must add:
-```xml
-...
- <repositories>
-   <repository>
-     <id>EasyWeb</id>
-     <url>https://github.com/ummo93/EasyWeb/</url>
-     <snapshots>
-       <enabled>true</enabled>
-       <updatePolicy>always</updatePolicy>
-     </snapshots>
-   </repository>
- </repositories>
- ...
-```
-And a dependency name:
-```xml
-...
- <dependencies>
-     <dependency>
-       <groupId>com.appartika</groupId>
-       <artifactId>easyweb</artifactId>
-       <version>1.0</version>
-     </dependency>
- </dependencies>
- ...
-```
+#### Installation
 
-#### Minimal configuration
+```sh
+git clone https://github.com/ummo93/EasyWeb.git
+```
+Then, go to EasyWeb/target folder. Copy easyweb.jar file to libs folder in your project or JRE. Mark this file as lib in your IDE.
+
+#### Getting started
 ```java
 import com.appartika.easyweb.App;
 import java.io.IOException;
