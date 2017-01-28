@@ -2,13 +2,13 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ummo93/EasyWeb)
 
-EasyWeb is a easiest web framework with a minimal number of dependencies inspired ExpressJS. Founded on com.sun.net.httpserver package.
+EasyWeb is easiest web framework with a minimal number of dependencies inspired by ExpressJS. Founded on com.sun.net.httpserver package.
 #### Requirements and dependencies
   - Java 8
   - Maven
   - Freemarker (http://freemarker.org/)
   
-#### Add depependency from maven
+#### Install from maven
 On the title page of the library the should be an instruction containing the repository address like:
 ```xml
   <repositories>
