@@ -1,1 +1,1 @@
-java -jar target/easy_web.jar
+java -jar target/easyweb.jar

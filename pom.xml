@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.appartika</groupId>
   <version>1.0</version>
-  <artifactId>easy_web</artifactId>
+  <artifactId>easyweb</artifactId>
   <dependencies>
     <dependency>
       <groupId>org.freemarker</groupId>
@@ -33,7 +33,7 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <finalName>easy_web</finalName>
+          <finalName>easyweb</finalName>
           <appendAssemblyId>false</appendAssemblyId>
           <archive>
             <manifest>

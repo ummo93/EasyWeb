@@ -1,4 +1,4 @@
-package framework;
+package com.appartika.easyweb;
 
 import java.io.*;
 import java.security.NoSuchAlgorithmException;

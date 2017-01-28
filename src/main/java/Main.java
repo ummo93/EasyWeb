@@ -1,5 +1,5 @@
 import java.io.IOException;
-import framework.App;
+import com.appartika.easyweb.App;
 
 public class Main {
 

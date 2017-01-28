@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
-import framework.App.Request;
-import framework.App.Response;
+import com.appartika.easyweb.App.Request;
+import com.appartika.easyweb.App.Response;
 
 public class Controller {
 
