@@ -114,7 +114,7 @@ public class App {
         }
     }
 
-    public static String join(String[] array) {
+    private static String join(String[] array) {
         StringBuilder sb = new StringBuilder();
         for (String s : array) {
             sb.append(s);
@@ -178,6 +178,13 @@ public class App {
     }
 
 /** ------------------------- Шифрование и безопасность ----------------------------- */
+    /**
+     * Шифрование строки в md5 хеш, затем - конкатенация кеша с солью и шифрование
+     * этого всего в sha1
+     * @param str строка, которую будем шифровать
+     * @param salt подмешиваемая соль
+     * @return зашифрованная строка
+     */
     public static String encrypt(String str, String salt) {
         return App.sha1(App.MD5(str) + salt);
     }
@@ -198,6 +205,11 @@ public class App {
             return "null";
         }
     }
+    /**
+     * Шифрование строки в md5 хеш
+     * @param md5 строка, которую будем шифровать
+     * @return md5 хеш
+     */
     public static String MD5(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
@@ -247,7 +259,7 @@ public class App {
         Manager.registrContext(options, lambdaExp);
     }
 
-    public static boolean IOexcept(IOException ioe, HttpExchange exc) {
+    private static boolean IOexcept(IOException ioe, HttpExchange exc) {
         System.out.println(ioe);
         PrintWriter outStreamObject = new PrintWriter(exc.getResponseBody());
         outStreamObject.println(ioe.toString());
