@@ -35,8 +35,8 @@ And a dependency name:
 
 #### Minimal configuration
 ```java
+import com.appartika.easyweb.App;
 import java.io.IOException;
-import framework.App;
 
 public class Main {
     public static void main(String[] args) throws IOException {
