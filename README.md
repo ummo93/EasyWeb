@@ -23,11 +23,11 @@ In pom.xml file there should be an instruction containing the repository address
  
  And a dependency name in dependencies section:
  ```xml
-   <dependency>
-       <groupId>com.github.ummo93</groupId>
-       <artifactId>EasyWeb</artifactId>
-       <version>dfe6fc7e8e</version>
-   </dependency>
+	<dependency>
+	    <groupId>com.github.ummo93</groupId>
+	    <artifactId>EasyWeb</artifactId>
+	    <version>1.0.0</version>
+	</dependency>
  ```
 
 #### Getting started
