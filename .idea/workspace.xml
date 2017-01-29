@@ -2,6 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8353d7fd-66c2-4142-a3a9-643bbd063e3e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Controller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Greetings.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/appartika/easyweb/App$Manager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/appartika/easyweb/App$Request.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/appartika/easyweb/App$Response.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/appartika/easyweb/App.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/index.ftl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/jquery-2.1.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/materialize.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/materialize.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/users.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/easyweb-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/easyweb.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_25_incubating.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_25_incubating.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EasyWeb.iws" />
@@ -23,60 +46,7 @@
     <favorites_list name="EasyWeb" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-248">
-              <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="29" />
-              <folding>
-                <element signature="docComment;class#App#0" expanded="false" />
-                <element signature="method#App#0;class#App#0" expanded="false" />
-                <element signature="method#setStaticPath#0;class#App#0" expanded="false" />
-                <element signature="method#setPublicPath#0;class#App#0" expanded="false" />
-                <element signature="method#listen#0;class#App#0" expanded="false" />
-                <element signature="method#listen#1;class#App#0" expanded="false" />
-                <element signature="method#join#0;class#App#0" expanded="false" />
-                <element signature="method#enablePublic#0;class#App#0" expanded="false" />
-                <element signature="method#sha1#0;class#App#0" expanded="false" />
-                <element signature="method#MD5#0;class#App#0" expanded="false" />
-                <element signature="method#bytesToHexStr#0;class#App#0" expanded="false" />
-                <element signature="method#post#0;class#App#0" expanded="false" />
-                <element signature="method#IOexcept#0;class#App#0" expanded="false" />
-                <element signature="class#Response#0;class#App#0" expanded="false" />
-                <element signature="method#send#0;class#Response#0;class#App#0" expanded="false" />
-                <element signature="method#render#0;class#Response#0;class#App#0" expanded="false" />
-                <element signature="method#sendFile#0;class#Response#0;class#App#0" expanded="false" />
-                <element signature="method#redirect#0;class#Response#0;class#App#0" expanded="false" />
-                <element signature="class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#removeCookie#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#cookie#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#cookie#1;class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#cookie#2;class#Request#0;class#App#0" expanded="false" />
-                <element signature="docComment;method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="docComment;method#form#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#form#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="method#body#0;class#Request#0;class#App#0" expanded="false" />
-                <element signature="class#Manager#0;class#App#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -84,6 +54,13 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>class Req</find>
+      <find>class Response</find>
+      <find>cookies(</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,7 +83,13 @@
         <option value="$PROJECT_DIR$/src/main/java/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/framework/AppHttps.java" />
+        <option value="$PROJECT_DIR$/run.bat" />
+        <option value="$PROJECT_DIR$/src/main/resources/index.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/login.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/appartika/easyweb/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -125,10 +108,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1942" />
-    <option name="height" value="1042" />
+    <option name="y" value="30" />
+    <option name="width" value="1920" />
+    <option name="height" value="983" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -145,8 +127,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -160,53 +142,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EasyWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EasyWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EasyWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EasyWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
-    <property name="settings.editor.splitter.proportion" value="0.2140575" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.splitter.proportion" value="0.2063882" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.31329829" />
@@ -217,6 +159,7 @@
     <property name="js-jscs-package" value="C:\Users\shiyu\AppData\Roaming\npm\node_modules\jscs" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="C:\Users\shiyu\AppData\Roaming\npm\node_modules\eslint" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -376,16 +319,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="BatchConfigurationType" factoryName="Batch">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
@@ -581,16 +514,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -692,19 +615,6 @@
       <module name="EasyWeb" />
       <method />
     </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="moduleName" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -719,19 +629,6 @@
       <scripts />
       <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
@@ -898,15 +795,19 @@
       <workItem from="1485531268074" duration="138000" />
       <workItem from="1485563090533" duration="781000" />
       <workItem from="1485564371924" duration="3772000" />
+      <workItem from="1485634506388" duration="98000" />
+      <workItem from="1485638411924" duration="565000" />
+      <workItem from="1485696436590" duration="1843000" />
+      <workItem from="1485714242438" duration="10145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11638000" />
+    <option name="totallyTimeSpent" value="24289000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="30" width="1920" height="983" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -917,20 +818,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3646789" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23798627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32858837" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18645833" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20775028" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -946,6 +847,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.gitignore" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -977,44 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding>
-            <element signature="docComment;class#App#0" expanded="false" />
-            <element signature="method#App#0;class#App#0" expanded="false" />
-            <element signature="method#setStaticPath#0;class#App#0" expanded="false" />
-            <element signature="method#setPublicPath#0;class#App#0" expanded="false" />
-            <element signature="method#listen#0;class#App#0" expanded="false" />
-            <element signature="method#listen#1;class#App#0" expanded="false" />
-            <element signature="method#join#0;class#App#0" expanded="false" />
-            <element signature="method#enablePublic#0;class#App#0" expanded="false" />
-            <element signature="method#sha1#0;class#App#0" expanded="false" />
-            <element signature="method#MD5#0;class#App#0" expanded="false" />
-            <element signature="method#bytesToHexStr#0;class#App#0" expanded="false" />
-            <element signature="method#post#0;class#App#0" expanded="false" />
-            <element signature="method#IOexcept#0;class#App#0" expanded="false" />
-            <element signature="class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#send#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#render#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#sendFile#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#redirect#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#removeCookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#1;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#2;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#body#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="class#Manager#0;class#App#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1025,106 +891,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2046">
-          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#App#0" expanded="false" />
-            <element signature="method#App#0;class#App#0" expanded="false" />
-            <element signature="method#setStaticPath#0;class#App#0" expanded="false" />
-            <element signature="method#setPublicPath#0;class#App#0" expanded="false" />
-            <element signature="method#listen#0;class#App#0" expanded="false" />
-            <element signature="method#listen#1;class#App#0" expanded="false" />
-            <element signature="method#join#0;class#App#0" expanded="false" />
-            <element signature="method#enablePublic#0;class#App#0" expanded="false" />
-            <element signature="method#sha1#0;class#App#0" expanded="false" />
-            <element signature="method#MD5#0;class#App#0" expanded="false" />
-            <element signature="method#bytesToHexStr#0;class#App#0" expanded="false" />
-            <element signature="method#post#0;class#App#0" expanded="false" />
-            <element signature="method#IOexcept#0;class#App#0" expanded="false" />
-            <element signature="class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#send#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#render#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#sendFile#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#redirect#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#removeCookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#1;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#2;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#body#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="class#Manager#0;class#App#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="93">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2046">
-          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#App#0" expanded="false" />
-            <element signature="method#App#0;class#App#0" expanded="false" />
-            <element signature="method#setStaticPath#0;class#App#0" expanded="false" />
-            <element signature="method#setPublicPath#0;class#App#0" expanded="false" />
-            <element signature="method#listen#0;class#App#0" expanded="false" />
-            <element signature="method#listen#1;class#App#0" expanded="false" />
-            <element signature="method#join#0;class#App#0" expanded="false" />
-            <element signature="method#enablePublic#0;class#App#0" expanded="false" />
-            <element signature="method#sha1#0;class#App#0" expanded="false" />
-            <element signature="method#MD5#0;class#App#0" expanded="false" />
-            <element signature="method#bytesToHexStr#0;class#App#0" expanded="false" />
-            <element signature="method#post#0;class#App#0" expanded="false" />
-            <element signature="method#IOexcept#0;class#App#0" expanded="false" />
-            <element signature="class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#send#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#render#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#sendFile#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#redirect#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#removeCookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#1;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#2;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#body#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="class#Manager#0;class#App#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
+        <state relative-caret-position="279">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/appartika/easyweb/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1136,75 +987,161 @@
         <state relative-caret-position="341">
           <caret line="11" column="50" lean-forward="false" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
           <folding>
-            <element signature="e#209#210#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="false" />
+            <element signature="e#293#294#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Test.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/framework/AppHttps.java" />
+    <entry file="file://$PROJECT_DIR$/.classpath" />
+    <entry file="file://$PROJECT_DIR$/app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.bat" />
+    <entry file="file://$PROJECT_DIR$/run.bat" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="62">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/App.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/index.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-248">
-          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="docComment;class#App#0" expanded="false" />
-            <element signature="method#App#0;class#App#0" expanded="false" />
-            <element signature="method#setStaticPath#0;class#App#0" expanded="false" />
-            <element signature="method#setPublicPath#0;class#App#0" expanded="false" />
-            <element signature="method#listen#0;class#App#0" expanded="false" />
-            <element signature="method#listen#1;class#App#0" expanded="false" />
-            <element signature="method#join#0;class#App#0" expanded="false" />
-            <element signature="method#enablePublic#0;class#App#0" expanded="false" />
-            <element signature="method#sha1#0;class#App#0" expanded="false" />
-            <element signature="method#MD5#0;class#App#0" expanded="false" />
-            <element signature="method#bytesToHexStr#0;class#App#0" expanded="false" />
-            <element signature="method#post#0;class#App#0" expanded="false" />
-            <element signature="method#IOexcept#0;class#App#0" expanded="false" />
-            <element signature="class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#send#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#render#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#sendFile#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="method#redirect#0;class#Response#0;class#App#0" expanded="false" />
-            <element signature="class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#removeCookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#1;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookie#2;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#cookies#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="docComment;method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#form#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="method#body#0;class#Request#0;class#App#0" expanded="false" />
-            <element signature="class#Manager#0;class#App#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/framework/AppHttps.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="33" column="55" lean-forward="true" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+        <state relative-caret-position="445">
+          <caret line="31" column="37" lean-forward="false" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
-          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <caret line="9" column="37" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="55" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/appartika/easyweb/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="456" column="42" lean-forward="false" selection-start-line="456" selection-start-column="12" selection-end-line="456" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="1" column="6" lean-forward="true" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="248">
+            <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            <folding>
+              <marker date="1485724221572" expanded="true" signature="652:789" ph="..." />
+              <marker date="1485724221572" expanded="true" signature="673:769" ph="..." />
+              <marker date="1485724221572" expanded="true" signature="775:789" ph="..." />
+              <marker date="1485724221572" expanded="true" signature="853:1007" ph="..." />
+              <marker date="1485724221572" expanded="true" signature="868:1006" ph="..." />
+              <marker date="1485724221572" expanded="true" signature="1050:1104" ph="..." />
+              <marker date="1485724221572" expanded="true" signature="1188:1357" ph="{...}" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.31329829" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.31329829" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.31329829" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
