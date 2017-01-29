@@ -1,5 +1,6 @@
 # EasyWeb (modern wrapper for com.sun.net.httpserver)
 [![Repo](https://jitpack.io/v/ummo93/EasyWeb.svg)](https://jitpack.io/#ummo93/EasyWeb)
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ummo93/EasyWeb)
 
 EasyWeb is easiest web framework with a minimal number of dependencies inspired by ExpressJS. Founded on com.sun.net.httpserver package.
