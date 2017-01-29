@@ -11,7 +11,7 @@ EasyWeb is easiest web framework with a minimal number of dependencies inspired 
   
 #### Installation as maven dependency
 
-In pom.xml file there should be an instruction containing the repository address like:
+In pom.xml file there should be an instruction containing the repository address:
  ```xml
     <repositories>
         <repository>
@@ -47,6 +47,12 @@ public class Main {
     }
 }
 ```
+
+For details, use the wiki:
+* [Create an application](https://github.com/ummo93/EasyWeb/wiki/Getting-started)
+* [Routers](https://github.com/ummo93/EasyWeb/wiki/Routers)
+* [Response and Request objects](https://github.com/ummo93/EasyWeb/wiki/Request-and-Response-objects)
+* [Cookies](https://github.com/ummo93/EasyWeb/wiki/Work-with-cookies)
 
 License
 ----
