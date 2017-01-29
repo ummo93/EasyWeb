@@ -1,22 +1,23 @@
 package com.appartika.easyweb;
 
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
+
 import java.io.*;
+import java.net.InetSocketAddress;
+import java.net.URI;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
-import java.net.InetSocketAddress;
-import java.net.URI;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.Headers;
-import java.security.MessageDigest;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateExceptionHandler;
 
 /**
  * Класс приложения, который включает все необходимые для работы методы.
@@ -259,6 +260,46 @@ public class App {
         Manager.registrContext(options, lambdaExp);
     }
 
+    /**
+     * Регистрирует обрботчик PUT запроса
+     * @param path контекст запроса
+     * @param lambdaExp выражение, которое будет выполнено при получении запроса
+     */
+    public void put(String path, BiPredicate<Request, Response> lambdaExp) {
+        String[] options = { path, "PUT" };
+        Manager.registrContext(options, lambdaExp);
+    }
+
+    /**
+     * Регистрирует обрботчик PATCH запроса
+     * @param path контекст запроса
+     * @param lambdaExp выражение, которое будет выполнено при получении запроса
+     */
+    public void patch(String path, BiPredicate<Request, Response> lambdaExp) {
+        String[] options = { path, "PATCH" };
+        Manager.registrContext(options, lambdaExp);
+    }
+
+    /**
+     * Регистрирует обрботчик DELETE запроса
+     * @param path контекст запроса
+     * @param lambdaExp выражение, которое будет выполнено при получении запроса
+     */
+    public void delete(String path, BiPredicate<Request, Response> lambdaExp) {
+        String[] options = { path, "DELETE" };
+        Manager.registrContext(options, lambdaExp);
+    }
+
+    /**
+     * Регистрирует обрботчик для любых типов запросов
+     * @param path контекст запроса
+     * @param lambdaExp выражение, которое будет выполнено при получении запроса
+     */
+    public void all(String path, BiPredicate<Request, Response> lambdaExp) {
+        String[] options = { path, "ALL" };
+        Manager.registrContext(options, lambdaExp);
+    }
+
     private static boolean IOexcept(IOException ioe, HttpExchange exc) {
         System.out.println(ioe);
         PrintWriter outStreamObject = new PrintWriter(exc.getResponseBody());
@@ -463,7 +504,7 @@ public class App {
          * @return словарь из которого можно получить передаваемые поля
          */
         public Map form() throws IOException {
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             String[] bodies = this.body.split("&");
             for(int i = 0; i < bodies.length; i++) {
                 map.put(bodies[i].split("=")[0], bodies[i].split("=")[1]);
@@ -486,20 +527,35 @@ public class App {
     }
 
     static class Manager implements HttpHandler {
-        public static Map<String[], BiPredicate<Request, Response>> hierarchy = new HashMap<String[], BiPredicate<Request, Response>>();
 
-        public static void registrContext(String[] path, BiPredicate<Request, Response> p) {
+        private static Map<String[], BiPredicate<Request, Response>> hierarchy = new HashMap<>();
+
+        private static void registrContext(String[] path, BiPredicate<Request, Response> p) {
             hierarchy.put(path, p);
         }
 
         @Override
         public void handle(HttpExchange exc) throws IOException {
-            System.out.println(exc.getRequestMethod() + ": " + exc.getRequestURI());
+            String reqPath = exc.getRequestURI().getPath();
+            String reqMethod = exc.getRequestMethod();
+            System.out.println(reqMethod + ": " + reqPath);
             hierarchy.forEach((String[] k, BiPredicate<Request, Response> v) -> {
-                if (k[0].equals(exc.getRequestURI().getPath()) && k[1].equals(exc.getRequestMethod())) {
+                // Проверяем, совпадают ли пришедший запрос и зарегистрированный, также если метод не совпал, то проверить,
+                // вдруг там ALL - т.е реагировать на любой метод
+                if ((k[0].equals(reqPath) && k[1].equals(reqMethod)) || ((k[0] + "/").equals(reqPath) && k[1].equals(reqMethod)) ||
+                        (k[0].equals(reqPath) && k[1].equals("ALL")) || ((k[0] + "/").equals(reqPath) && k[1].equals("ALL")) ) {
+
+                    v.test(new Request(exc), new Response(exc));
+                }
+                // Если ни метод, ни контекст не совпал, то проверить, может там * и нужно на все контексты применить
+                else if(( reqPath.split("/").length > 1 ) &&
+                        (((reqPath.replace(reqPath.split("/")[reqPath.split("/").length - 1], "*").equals(k[0])) && k[1].equals(reqMethod)) ||
+                        ((reqPath.replace(reqPath.split("/")[reqPath.split("/").length - 1], "*").equals(k[0] + "/")) && k[1].equals(reqMethod)))) {
+
                     v.test(new Request(exc), new Response(exc));
                 }
             });
+            // Обрабатывает все остальные случаи (и файлы и неверные запросы)
             App.enablePublic(exc);
         }
     }

@@ -29,7 +29,7 @@
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <h5 id="tutor_title" class="center" style="margin-top:75px;">Hello ${user}, on page "/"</h5>
-            <#if user == "Dima"><p class="center">Freemarker templating engine</p></#if>
+            <#if user == "GitHub user"><p class="center">Freemarker templating engine</p></#if>
         </div>
     </div>
 

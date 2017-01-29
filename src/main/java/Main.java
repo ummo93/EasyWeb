@@ -1,5 +1,6 @@
-import java.io.IOException;
 import com.appartika.easyweb.App;
+
+import java.io.IOException;
 
 public class Main {
 
@@ -13,6 +14,17 @@ public class Main {
 
         // Регистрируем обработчик главной стрнаицы на метод mainPage()
         app.get("/", Controller::mainPage);
+
+        // Демонстрация некоторых других возможностей микрофреймворка
+        app.post("/rest/*", (req, res) -> res.send("Hello world!", 200));
+
+        app.put("/put", (req, res) -> res.send("This is a put request!", 200));
+
+        app.patch("/patch", (req, res) -> res.send("This is a patch request!", 200));
+
+        app.delete("/delete", (req, res) -> res.send("This is a delete request!", 200));
+
+        app.all("/all", (req, res) -> res.sendFile("login.html"));
 
         app.get("/rest", (req, res) -> {
             Greetings hello = new Greetings("hello!");
