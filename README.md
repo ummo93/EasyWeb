@@ -32,13 +32,12 @@ In pom.xml file there should be an instruction containing the repository address
 #### Getting started
 ```java
 import static com.appartika.easyweb.App.*;
-import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        
+    
         get("/", (req, res) -> res.send("ok", 200));
-        
+	
         listen(5000);
     }
 }
