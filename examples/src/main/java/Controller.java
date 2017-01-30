@@ -1,5 +1,5 @@
-import com.appartika.easyweb.App.Request;
-import com.appartika.easyweb.App.Response;
+import com.appartika.easyweb.Request;
+import com.appartika.easyweb.Response;
 import java.util.HashMap;
 import java.util.Map;
 

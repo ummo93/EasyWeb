@@ -1,4 +1,4 @@
-import static com.appartika.easyweb.App.*;
+import static com.appartika.easyweb.Core.*;
 
 public class Main {
 
@@ -8,6 +8,7 @@ public class Main {
         setStaticPath("./examples/src/main/resources/");
         // Set path for public files
         setPublicPath("./examples/src/main/resources/public/");
+
         // Main page handler with controller mainPage()
         get("/", Controller::mainPage);
 
