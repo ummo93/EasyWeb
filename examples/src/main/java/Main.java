@@ -1,5 +1,4 @@
 import com.appartika.easyweb.App;
-
 import java.io.IOException;
 
 public class Main {
@@ -8,9 +7,9 @@ public class Main {
         // Создаём экземпляр приложения
         App app = new App();
         // Задаём где у нас будут лежать статические файлы
-        app.setStaticPath("./src/main/resources/");
+        app.setStaticPath("./examples/src/main/resources/");
         // Задаём где у нас будут лежать публичные файлы
-        app.setPublicPath("./src/main/resources/public/");
+        app.setPublicPath("./examples/src/main/resources/public/");
 
         // Регистрируем обработчик главной стрнаицы на метод mainPage()
         app.get("/", Controller::mainPage);
@@ -24,7 +23,7 @@ public class Main {
 
         app.delete("/delete", (req, res) -> res.send("This is a delete request!", 200));
 
-        app.all("/all", (req, res) -> res.sendFile("login.html"));
+        app.all("/all", (req, res) -> res.sendFile("examples/src/main/resources/login.html"));
 
         app.get("/rest", (req, res) -> {
             Greetings hello = new Greetings("hello!");

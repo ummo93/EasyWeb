@@ -1,5 +1,7 @@
 package com.appartika.easyweb;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -85,7 +87,29 @@ public class App {
         }
 
     }
-
+    /**
+     * Парсит строку в JSON формате в словарь, использует GSON библиотеку
+     * @param body строка
+     */
+    public static Map fromJson(String body) {
+        Map<String,Object> map = new HashMap<>();
+        Gson gson = new Gson();
+        try {
+            map = (Map<String, Object>) gson.fromJson(body, map.getClass());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {
+            return map;
+        }
+    }
+    /**
+     * Парсит словарь Map в JSON строку, использует GSON библиотеку
+     * @param body Map словарь
+     */
+    public static String toJson(Map body) {
+        Gson gson = new GsonBuilder().create();
+        return gson.toJson(body);
+    }
     /**
      * Запускает сервер на определённом порту.
      * @param port порт на котором будет запущен процесс
@@ -510,6 +534,34 @@ public class App {
                 map.put(bodies[i].split("=")[0], bodies[i].split("=")[1]);
             }
             return map;
+        }
+        /**
+         * Парсит в словарь параметры GET запроса (Содержит словарь всех параметров).
+         * @return словарь из которого можно получить передаваемые параметры
+         */
+        public Map queryParams() {
+            Map<String, String> map = new HashMap<>();
+            String[] bodies = this.query.split("&");
+            for(int i = 0; i < bodies.length; i++) {
+                map.put(bodies[i].split("=")[0], bodies[i].split("=")[1]);
+            }
+            return map;
+        }
+        /**
+         * Парсит значение опредеённого GET парамтра в строку (Содержит строку со значением).
+         * @return словарь из которого можно получить передаваемые параметры
+         */
+        public String queryParams(String key) {
+            Map<String, String> map = new HashMap<>();
+            String[] bodies = this.query.split("&");
+            for(int i = 0; i < bodies.length; i++) {
+                map.put(bodies[i].split("=")[0], bodies[i].split("=")[1]);
+            }
+            if(map.containsKey(key)) {
+                return map.get(key);
+            } else {
+                return null;
+            }
         }
         /**
          * Парсит в строку тело POST запроса в любом формате из [] байтов.

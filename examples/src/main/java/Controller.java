@@ -1,7 +1,7 @@
-import java.util.HashMap;
-import java.util.Map;
 import com.appartika.easyweb.App.Request;
 import com.appartika.easyweb.App.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller {
 
@@ -10,5 +10,4 @@ public class Controller {
         data.put("user", "GitHub user");
         return res.render("index.ftl", data);
     }
-
 }
