@@ -26,7 +26,7 @@ In pom.xml file there should be an instruction containing the repository address
 	<dependency>
 	    <groupId>com.github.ummo93</groupId>
 	    <artifactId>EasyWeb</artifactId>
-	    <version>1.0.0</version>
+	    <version>1.0.1</version>
 	</dependency>
  ```
 
