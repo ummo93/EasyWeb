@@ -44,17 +44,15 @@ import java.util.function.BiPredicate;
  */
 public class App {
     /* Здесь хранится класс-обработчик запросов **/
-    public static HttpHandler handler;
+    private static HttpHandler handler = new Manager();
     /* Конфигурация для движка шаблонизатора **/
-    public static Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
+    private static Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
     /* Путь для статических файлов по умолчанию **/
-    public static String pathToStatic = "./";
+    private static String pathToStatic = "./";
     /* Путь к публичной директории**/
-    public static String pathToPublic = "./";
+    private static String pathToPublic = "./";
 
-    public App() throws IOException {
-        /* Экземпляр обработчика запросов для маршрутизации оных **/
-        handler = new Manager();
+    static {
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
@@ -65,12 +63,16 @@ public class App {
      * На него ссылается движок шаблонизатора.
      * @param pathToStaticFolder относительный путь к папке (заканчивается на /)
      */
-    public void setStaticPath(String pathToStaticFolder) throws IOException {
-        if (pathToStaticFolder.endsWith("/")) {
-            cfg.setDirectoryForTemplateLoading(new File(pathToStaticFolder));
-            pathToStatic = pathToStaticFolder;
-        } else {
-            throw new IOException("End char in path of static files string must ending with a \"/\"");
+    public static void setStaticPath(String pathToStaticFolder) {
+        try {
+            if (pathToStaticFolder.endsWith("/")) {
+                cfg.setDirectoryForTemplateLoading(new File(pathToStaticFolder));
+                pathToStatic = pathToStaticFolder;
+            } else {
+                System.err.println("End char in path of static files string must ending with a \"/\"");
+            }
+        } catch (IOException ioe) {
+            System.err.println(ioe.toString());
         }
 
     }
@@ -79,13 +81,12 @@ public class App {
      * Задаёт путь, где хранятся публичные файлы, доступ к которым разрешён с помощью GET.
      * @param pathToPublicFolder относительный путь к папке (заканчивается на /)
      */
-    public void setPublicPath(String pathToPublicFolder) throws IOException {
+    public static void setPublicPath(String pathToPublicFolder) {
         if (pathToPublicFolder.endsWith("/")) {
             pathToPublic = pathToPublicFolder;
         } else {
-            throw new IOException("End char in path of public folder string must ending with a \"/\"");
+            System.err.println("End char in path of static files string must ending with a \"/\"");
         }
-
     }
     /**
      * Парсит строку в JSON формате в словарь, использует GSON библиотеку
@@ -114,28 +115,36 @@ public class App {
      * Запускает сервер на определённом порту.
      * @param port порт на котором будет запущен процесс
      */
-    public void listen(int port) throws NumberFormatException, IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 10);
-        server.createContext("/", handler);
-        server.start();
-        System.out.println("Server started on port " + port + "\n");
+    public static void listen(int port) {
+        try {
+            HttpServer server = HttpServer.create(new InetSocketAddress(port), 10);
+            server.createContext("/", handler);
+            server.start();
+            System.out.println("Server started on port " + port + "\n");
+        } catch(IOException e) {
+            System.err.println(e.toString());
+        }
     }
 
     /**
      * Запускает сервер на определённом порту.
      * @param port порт на котором будет запущен процесс
      */
-    public void listen(String port) throws NumberFormatException, IOException {
-        if (port != null) {
-            HttpServer server = HttpServer.create(new InetSocketAddress(Integer.valueOf(port)), 10);
-            server.createContext("/", handler);
-            server.start();
-            System.out.println("Server started on port " + Integer.valueOf(port) + "\n");
-        } else {
-            HttpServer server = HttpServer.create(new InetSocketAddress(8080), 10);
-            server.createContext("/", handler);
-            server.start();
-            System.out.println("Server started on port " + 8080 + "\n");
+    public static void listen(String port) {
+        try {
+            if (port != null) {
+                HttpServer server = HttpServer.create(new InetSocketAddress(Integer.valueOf(port)), 10);
+                server.createContext("/", handler);
+                server.start();
+                System.out.println("Server started on port " + Integer.valueOf(port) + "\n");
+            } else {
+                HttpServer server = HttpServer.create(new InetSocketAddress(8080), 10);
+                server.createContext("/", handler);
+                server.start();
+                System.out.println("Server started on port " + 8080 + "\n");
+            }
+        } catch(IOException e) {
+            System.err.println(e.toString());
         }
     }
 
@@ -269,7 +278,7 @@ public class App {
      * @param path контекст запроса
      * @param lambdaExp выражение, которое будет выполнено при получении запроса
      */
-    public void post(String path, BiPredicate<Request, Response> lambdaExp) {
+    public static void post(String path, BiPredicate<Request, Response> lambdaExp) {
         String[] options = { path, "POST" };
         Manager.registrContext(options, lambdaExp);
     }
@@ -279,7 +288,7 @@ public class App {
      * @param path контекст запроса
      * @param lambdaExp выражение, которое будет выполнено при получении запроса
      */
-    public void get(String path, BiPredicate<Request, Response> lambdaExp) {
+    public static void get(String path, BiPredicate<Request, Response> lambdaExp) {
         String[] options = { path, "GET" };
         Manager.registrContext(options, lambdaExp);
     }
@@ -289,7 +298,7 @@ public class App {
      * @param path контекст запроса
      * @param lambdaExp выражение, которое будет выполнено при получении запроса
      */
-    public void put(String path, BiPredicate<Request, Response> lambdaExp) {
+    public static void put(String path, BiPredicate<Request, Response> lambdaExp) {
         String[] options = { path, "PUT" };
         Manager.registrContext(options, lambdaExp);
     }
@@ -299,7 +308,7 @@ public class App {
      * @param path контекст запроса
      * @param lambdaExp выражение, которое будет выполнено при получении запроса
      */
-    public void patch(String path, BiPredicate<Request, Response> lambdaExp) {
+    public static void patch(String path, BiPredicate<Request, Response> lambdaExp) {
         String[] options = { path, "PATCH" };
         Manager.registrContext(options, lambdaExp);
     }
@@ -309,7 +318,7 @@ public class App {
      * @param path контекст запроса
      * @param lambdaExp выражение, которое будет выполнено при получении запроса
      */
-    public void delete(String path, BiPredicate<Request, Response> lambdaExp) {
+    public static void delete(String path, BiPredicate<Request, Response> lambdaExp) {
         String[] options = { path, "DELETE" };
         Manager.registrContext(options, lambdaExp);
     }
@@ -319,7 +328,7 @@ public class App {
      * @param path контекст запроса
      * @param lambdaExp выражение, которое будет выполнено при получении запроса
      */
-    public void all(String path, BiPredicate<Request, Response> lambdaExp) {
+    public static void all(String path, BiPredicate<Request, Response> lambdaExp) {
         String[] options = { path, "ALL" };
         Manager.registrContext(options, lambdaExp);
     }

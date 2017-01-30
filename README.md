@@ -1,13 +1,12 @@
 # EasyWeb (modern wrapper for com.sun.net.httpserver)
 [![Repo](https://jitpack.io/v/ummo93/EasyWeb.svg)](https://jitpack.io/#ummo93/EasyWeb)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ummo93/EasyWeb)
-
 EasyWeb is easiest web framework with a minimal number of dependencies inspired by ExpressJS. Founded on com.sun.net.httpserver package.
 #### Requirements and dependencies
   - Java 8
   - Maven
   - Freemarker (http://freemarker.org/)
+  - GSON for json parsing (https://github.com/google/gson)
   
 #### Installation as maven dependency
 
@@ -32,18 +31,15 @@ In pom.xml file there should be an instruction containing the repository address
 
 #### Getting started
 ```java
-import com.appartika.easyweb.App;
+import static com.appartika.easyweb.App.*;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        App app = new App();
+    public static void main(String[] args) {
         
-        app.get("/", (req, res) -> {
-            return res.send("ok", 200);
-        });
+        get("/", (req, res) -> res.send("ok", 200));
         
-        app.listen(5000);
+        listen(5000);
     }
 }
 ```
