@@ -42,7 +42,7 @@
           <appendAssemblyId>false</appendAssemblyId>
           <archive>
             <manifest>
-              <mainClass>Main</mainClass>
+              <mainClass>com.appartika.easyweb</mainClass>
             </manifest>
           </archive>
         </configuration>

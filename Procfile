@@ -1,1 +1,1 @@
-web:    java -jar target/easyweb.jar
+web:    mvn clean&&mvn install&&java -jar target/easyweb.jar

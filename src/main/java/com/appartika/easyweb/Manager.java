@@ -11,6 +11,7 @@ import com.sun.net.httpserver.HttpHandler;
 class Manager implements HttpHandler {
 
     private static Map<String[], BiPredicate<Request, Response>> hierarchy = new HashMap<>();
+    private static Map<String[], BiPredicate<Request, Response>> allPath = new HashMap<>();
 
     /**
      * It checks the public folder, and if the file name in the request is the same with
@@ -68,7 +69,12 @@ class Manager implements HttpHandler {
     }
 
     public static void registrContext(String[] path, BiPredicate<Request, Response> p) {
-        hierarchy.put(path, p);
+        if(path[0].equals("*")) {
+            allPath.put(path, p);
+        } else {
+            hierarchy.put(path, p);
+        }
+        
     }
 
     @Override
@@ -76,21 +82,31 @@ class Manager implements HttpHandler {
         String reqPath = exc.getRequestURI().getPath();
         String reqMethod = exc.getRequestMethod();
         System.out.println(reqMethod + ": " + reqPath);
-        hierarchy.forEach((String[] k, BiPredicate<Request, Response> v) -> {
-            // Check whether the same request came and reported
-            if ((k[0].equals(reqPath) && k[1].equals(reqMethod)) || ((k[0] + "/").equals(reqPath) && k[1].equals(reqMethod)) ||
-                    (k[0].equals(reqPath) && k[1].equals("ALL")) || ((k[0] + "/").equals(reqPath) && k[1].equals("ALL")) ) {
 
-                v.test(new Request(exc), new Response(exc));
-            }
-            // If neither method nor the context does not match, the check can be there *
-            else if(( reqPath.split("/").length > 1 ) &&
-                    (((reqPath.replace(reqPath.split("/")[reqPath.split("/").length - 1], "*").equals(k[0])) && k[1].equals(reqMethod)) ||
-                            ((reqPath.replace(reqPath.split("/")[reqPath.split("/").length - 1], "*").equals(k[0] + "/")) && k[1].equals(reqMethod)))) {
+        // If before handler is exist
+        if(!allPath.isEmpty()) {
+            allPath.forEach((String[] k, BiPredicate<Request, Response> v) -> {
+                if(k[1].equals(reqMethod) || k[1].equals("ALL")) {
+                    v.test(new Request(exc), new Response(exc));
+                }
+            });
+        } else {
+            hierarchy.forEach((String[] k, BiPredicate<Request, Response> v) -> {
+                // Check whether the same request came and reported
+                if ((k[0].equals(reqPath) && k[1].equals(reqMethod)) || ((k[0] + "/").equals(reqPath) && k[1].equals(reqMethod)) ||
+                        (k[0].equals(reqPath) && k[1].equals("ALL")) || ((k[0] + "/").equals(reqPath) && k[1].equals("ALL")) ) {
 
-                v.test(new Request(exc), new Response(exc));
-            }
-        });
+                    v.test(new Request(exc), new Response(exc));
+                }
+                // If neither method nor the context does not match, the check can be there *
+                else if(( reqPath.split("/").length > 1 ) &&
+                        (((reqPath.replace(reqPath.split("/")[reqPath.split("/").length - 1], "*").equals(k[0])) && k[1].equals(reqMethod)) ||
+                                ((reqPath.replace(reqPath.split("/")[reqPath.split("/").length - 1], "*").equals(k[0] + "/")) && k[1].equals(reqMethod)))) {
+
+                    v.test(new Request(exc), new Response(exc));
+                }
+            });
+        }
         // Processes all other cases (files and invalid requests)
         enablePublic(exc);
     }
